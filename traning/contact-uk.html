@@ -19,7 +19,8 @@
   <!--FontAwesome CSS-->
   <link rel="stylesheet" href="icons/font-awesome.min.css">
 
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   
   <script>
     var isNS = (navigator.appName == "PN") ? 1 : 0;
@@ -237,7 +238,7 @@
             <div class="ticket-info pb-5">
               <h5 class="text-white pb-2">Ticket INFO:</h5>
               <p class="m-0">Booking: (+62) 1919-2020</p>
-              <p class="m-0">Email: info@lch-uk.com</p>
+              <p class="m-0">Email: info@lhc-uk.com</p>
             </div>
             <div class="direction-link">
               <a>Get Directions</a>
@@ -251,7 +252,7 @@
               <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
             <div class="form">
-              <form>
+              <form id="submit-form">
                 <div class="row">
                   <div class="col-lg-6">
                     <input type="text" placeholder="Name" class="mb-3">
@@ -261,10 +262,10 @@
                   </div>
                 </div>
                 <div class="phone-no">
-                  <input type="tel" placeholder="Phone No." class="mb-3">
+                  <input type="tel" placeholder="Phone No." class="mb-3" required>
                 </div>
                 <div class="subject">
-                  <input type="text" placeholder="Subject" class="mb-3">
+                  <input type="text" placeholder="Subject" class="mb-3" required>
                 </div>
                 <div class="message">
                   <textarea placeholder="Message" rows="4" class="mb-3"></textarea>
@@ -281,6 +282,26 @@
     </div>
   </div>
 </section>
+
+<script>
+  $("#submit-form").submit((e)=>{
+  e.preventDefault()
+  $.ajax({
+  url:"https://script.google.com/macros/s/AKfycbxPLwX5Trx-jPij6pY7aDF6JOTVcvdWP5jyjLKyBOkYDLj6PVS3ZxNkJMwZ2MfZ9b8dCg/exec",
+  data:$("#submit-form").serialize(),
+  method:"post",
+  success:function (response){
+  alert("Your message has been sent. Thank you!")
+  window.location.reload()
+  //window.location.href="https://google.com"
+  },
+  error:function (err){
+  alert("Something Error")
+  
+  }
+  })
+  })
+  </script>
 <!--Contact Section end--> 
 
 <!--Subscribe Section start-->

@@ -20,7 +20,8 @@
   <link rel="stylesheet" href="icons/font-awesome.min.css">
 
 
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script>
     var isNS = (navigator.appName == "PN") ? 1 : 0;
     if(navigator.appName == "PN") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
@@ -219,11 +220,11 @@
   <div class="container">
     <div class="booking-form w-lg-75 m-auto px-2">
       <div class="form-title mb-4">
-        <h2 class="mb-2"><span class="pink">Event</span> Booking Form</h2>
-        <p>Book your tickets to the event now!!</p>
+        <h2 class="mb-2"><span class="pink">Training</span> Booking Form</h2>
+        <p>Book your tickets to the Training now!!</p>
       </div>
       <div class="form-content">
-        <form>
+        <form id="submit-form">
           <div class="name-email">
             <div class="row">
               <div class="col-lg-6">
@@ -283,6 +284,19 @@
                     <option value="3">4</option>
                     <option value="3">5</option>
                   </select>
+                </div>   
+                
+                <div class="attendee-no">
+                  <label for="attendee" class="mb-2">Place:</label>
+                  <select id="attendee" class="py-4 mb-4"  required>
+                    <option value="">--Place--</option>
+                    <option value="1">UK</option>
+                    <option value="2">UK2</option>
+                    <option value="3">UAE</option>
+                    <option value="3">DUBAI</option>
+                    <option value="3">DUBAI2</option>
+                  </select>
+                  
                 </div>    
               </div>
               <div class="col-lg-6 col-md-6">
@@ -298,6 +312,27 @@
     </div>
   </div>
 </section>
+
+<script>
+  $("#submit-form").submit((e)=>{
+  e.preventDefault()
+  $.ajax({
+  url:"https://script.google.com/macros/s/AKfycbxPLwX5Trx-jPij6pY7aDF6JOTVcvdWP5jyjLKyBOkYDLj6PVS3ZxNkJMwZ2MfZ9b8dCg/exec",
+  data:$("#submit-form").serialize(),
+  method:"post",
+  success:function (response){
+  alert("Your message has been sent. Thank you!")
+  window.location.reload()
+  //window.location.href="https://google.com"
+  },
+  error:function (err){
+  alert("Something Error")
+  
+  }
+  })
+  })
+  </script>
+
 <!--Book now Section end-->
 
 <!--Direction Section start-->
